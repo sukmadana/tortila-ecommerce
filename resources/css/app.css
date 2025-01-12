@@ -3,3 +3,19 @@
 @tailwind utilities;
 @tailwind variants;
 
+table.cart-total th{
+    @apply text-xl font-medium;
+}
+
+table.cart-total th,
+table.cart-total td{
+    @apply px-10 py-4;
+}
+
+table.cart-total tr{
+    @apply text-gray-900 font-bold text-3xl text-right dark:text-gray-100 border-b dark:border-b-gray-400;
+}
+
+table.cart-total tr:last-child{
+    @apply border-none;
+}

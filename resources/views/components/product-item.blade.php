@@ -4,13 +4,13 @@
 <div class="p-5">
     <div class="relative w-full mb-5">
         <div class="relative w-full">
-            <a href="#">
+            <a href="{{route('product.single', $product->id)}}">
                 <img src="{{ asset('storage/'. $product->gambar )}}" alt="" class="w-full">
             </a>
         </div>
     </div>
     <div class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
-        <a href="#">
+        <a href="{{route('product.single', $product->id)}}">
             {{ $product->nama_produk }}
         </a>
     </div>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,13 @@ Route::view('profile', 'profile')
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('product', [ProductController::class, 'index'])->name('product');
-Route::view('about', 'about')->name('about');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('product', [ProductController::class, 'index'])->name('product');
+    Route::get('product/{id}', [ProductController::class, 'show'])->name('product.single');
+    Route::view('about', 'about')->name('about');
+    Route::get('cart', [CartController::class, 'index'])->name('cart');
+    Route::post('add-cart', [CartController::class, 'add'])->name('cart.add');
+    Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
+    Route::post('order', [CartController::class, 'order'])->name('order');
+});

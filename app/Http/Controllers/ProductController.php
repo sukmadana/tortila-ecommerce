@@ -14,4 +14,12 @@ class ProductController extends Controller
 
         return view('product', compact('products', 'terlaris'));
     }
+
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        $related = Product::inRandomOrder()->limit(3)->whereNot('id', $id)->get();
+
+        return view('single-product', compact('product', 'related'));
+    }
 }
